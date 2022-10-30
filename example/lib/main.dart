@@ -44,29 +44,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double buttonText = 0;
     return Scaffold(
       appBar: AppBar(title: const Text("Sticky widgets example")),
       body: StickyContainer(
         stickyChildren: [
-          StickyWidget(
-            initialPosition: StickyPosition(
-                top: MediaQuery.of(context).size.height - 100, right: 30),
-            finalPosition: StickyPosition(top: 0, right: 30),
-            controller: _controller,
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Theme.of(context).primaryColor,
+          StatefulBuilder(builder: (context, setState) {
+            return StickyWidget(
+              callback: (double scrollOffset) => setState(() {
+                buttonText = scrollOffset;
+              }),
+              initialPosition: StickyPosition(bottom: 100, right: 0),
+              finalPosition: StickyPosition(
+                  bottom: 100, right: MediaQuery.of(context).size.width - 30),
+              controller: _controller,
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Center(child: Text("$buttonText")),
               ),
-              child: const Icon(Icons.pause, size: 20),
-            ),
-          ),
+            );
+          }),
           StickyWidget(
-            initialPosition: StickyPosition(
-                bottom: MediaQuery.of(context).size.height - 100, left: 30),
-            finalPosition: StickyPosition(bottom: 0, left: 30),
+            initialPosition: StickyPosition(top: 0, left: 30),
+            finalPosition: StickyPosition(
+                top: 0, left: MediaQuery.of(context).size.width - 30),
             controller: _controller,
             child: Container(
               width: 40,
@@ -80,11 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
         child: ListView.builder(
+            scrollDirection: Axis.horizontal,
             controller: _controller,
             itemCount: 30,
             itemBuilder: ((context, index) {
-              return ListTile(
-                title: Text("Tile $index"),
+              return Container(
+                width: 100,
+                color: Colors.pinkAccent,
+                child: Center(child: Text("Tile $index")),
               );
             })),
       ),

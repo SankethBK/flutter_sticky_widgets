@@ -5,31 +5,30 @@ class StickyWidget extends StatefulWidget {
   final StickyPosition _initialPosition;
   final StickyPosition _finalPosition;
   final ScrollController _controller;
+  final Function(double)? callback;
   final Widget child;
-  StickyWidget({
-    Key? key,
-    required StickyPosition initialPosition,
-    required StickyPosition finalPosition,
-    required ScrollController controller,
-    required this.child,
-  })  : assert(
-            !((initialPosition.top != null) ^ (finalPosition.top != null)) ||
+  StickyWidget(
+      {Key? key,
+      required StickyPosition initialPosition,
+      required StickyPosition finalPosition,
+      required ScrollController controller,
+      required this.child,
+      this.callback})
+      : assert(
+            !((initialPosition.top != null) ^ (finalPosition.top != null)) &&
                 !((initialPosition.bottom != null) ^
-                    (finalPosition.bottom != null)) ||
+                    (finalPosition.bottom != null)) &&
                 !((initialPosition.left != null) ^
-                    (finalPosition.left != null)) ||
+                    (finalPosition.left != null)) &&
                 !((initialPosition.left != null) ^
                     (finalPosition.left != null)),
             "Provide same position paramters for initial and final Positions"),
         assert(
-            !((initialPosition.top != null) &&
-                    (initialPosition.bottom != null)) ||
-                !((initialPosition.left != null) &&
-                    (initialPosition.right != null)) ||
-                !((finalPosition.top != null) &&
-                    (finalPosition.bottom != null)) ||
-                !((finalPosition.left != null) &&
-                    (finalPosition.right != null)),
+            (initialPosition.top != null) ^ (initialPosition.bottom != null) &&
+                (initialPosition.left != null) ^
+                    (initialPosition.right != null) &&
+                (finalPosition.top != null) ^ (finalPosition.bottom != null) &&
+                (finalPosition.left != null) ^ (finalPosition.right != null),
             "Don't provide both parameters of same axis (eg: top, bottom)"),
         _initialPosition = initialPosition,
         _finalPosition = finalPosition,
@@ -73,7 +72,13 @@ class _StickyWidgetState extends State<StickyWidget> {
       } else {
         updateBottom(widget._controller.position.pixels);
       }
-    } else {}
+    } else {
+      if (widget._initialPosition.left != null) {
+        updateLeft(widget._controller.position.pixels);
+      } else {
+        updateRight(widget._controller.position.pixels);
+      }
+    }
   }
 
   void updateTop(double scrollOffset) {
@@ -85,11 +90,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalTop <= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       } else if (finalTop > widget._finalPosition.top! &&
           _computedTop! < widget._finalPosition.top!) {
         setState(() {
           _computedTop = widget._finalPosition.top!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       }
     } else {
@@ -99,11 +106,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalTop >= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       } else if (finalTop < widget._finalPosition.top! &&
           _computedTop! > widget._finalPosition.top!) {
         setState(() {
           _computedTop = widget._finalPosition.top!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       }
     }
@@ -118,11 +127,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalBottom <= widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = finalBottom;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       } else if (finalBottom > widget._finalPosition.bottom! &&
           _computedBottom! < widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = widget._finalPosition.bottom!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       }
     } else {
@@ -132,11 +143,87 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalBottom >= widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = finalBottom;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       } else if (finalBottom < widget._finalPosition.bottom! &&
           _computedBottom! > widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = widget._finalPosition.bottom!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      }
+    }
+  }
+
+  void updateLeft(double scrollOffset) {
+    double finalLeft;
+    if (widget._initialPosition.left! < widget._finalPosition.left!) {
+      finalLeft = widget._initialPosition.left! + scrollOffset;
+
+      if (finalLeft >= widget._initialPosition.left! &&
+          finalLeft <= widget._finalPosition.left!) {
+        setState(() {
+          _computedLeft = finalLeft;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      } else if (finalLeft > widget._finalPosition.left! &&
+          _computedLeft! < widget._finalPosition.left!) {
+        setState(() {
+          _computedLeft = widget._finalPosition.left!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      }
+    } else {
+      finalLeft = widget._initialPosition.left! - scrollOffset;
+
+      if (finalLeft <= widget._initialPosition.left! &&
+          finalLeft >= widget._finalPosition.left!) {
+        setState(() {
+          _computedLeft = finalLeft;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      } else if (finalLeft < widget._finalPosition.left! &&
+          _computedLeft! > widget._finalPosition.left!) {
+        setState(() {
+          _computedLeft = widget._finalPosition.left!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      }
+    }
+  }
+
+  void updateRight(double scrollOffset) {
+    double finalRight;
+    if (widget._initialPosition.right! < widget._finalPosition.right!) {
+      finalRight = widget._initialPosition.right! + scrollOffset;
+
+      if (finalRight >= widget._initialPosition.right! &&
+          finalRight <= widget._finalPosition.right!) {
+        setState(() {
+          _computedRight = finalRight;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      } else if (finalRight > widget._finalPosition.right! &&
+          _computedRight! < widget._finalPosition.right!) {
+        setState(() {
+          _computedRight = widget._finalPosition.right!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      }
+    } else {
+      finalRight = widget._initialPosition.right! - scrollOffset;
+
+      if (finalRight <= widget._initialPosition.right! &&
+          finalRight >= widget._finalPosition.right!) {
+        setState(() {
+          _computedRight = finalRight;
+          if (widget.callback != null) widget.callback!(scrollOffset);
+        });
+      } else if (finalRight < widget._finalPosition.right! &&
+          _computedRight! > widget._finalPosition.right!) {
+        setState(() {
+          _computedRight = widget._finalPosition.right!;
+          if (widget.callback != null) widget.callback!(scrollOffset);
         });
       }
     }
