@@ -1,0 +1,40 @@
+
+1. StickyButton will be given a clean intial position, i think easier would be user must supply one x axis direction (right / left)
+ and one y axis direction (top / bottom). We should be able to mark the initial location clearly with this informaiton
+2. Final position should be either a x direction or a y direction. 
+   There are 2 approaches here again. Let's user supplied top for the inital position. 
+   a. We can force him to supply top itself for final position also, that would simolify a lot fo things. 
+   b. We can allow user to suppky top for initial position and bottom for final position, we need to do some math here. Seems like something like LayoutBuilder has to be used, but not sure how are we going to do this as of now. 
+3. In CSS sticky eleemnts can be placed as if they are in normal document flow. But when it reaches the sticky position then it shows its effect. But my question is let's say an element is a children in row or a child of a bigger element, does it makes sense ot make the child sticky? what happens to parent in this case, what is the result of this in CSS?
+I tested it, it's not true in CSS, sticky works only if the element is direct child of <html> element
+4. ScrollController should be maintained in outer container widget, using the scroll offset value, StickyButtons must be capable of drawing themselves.
+
+5. StickyContainer's size should be same as the list which it wraps, otheriwse it doesn't makes sense. 
+6. Let's say for now we get the size of list using layoutbuilder with constraints.maxheight, we need to condsider the scroll direction as well here, if it is horizontal scroll we need to get constraints.maxwidth. We are already getting scrollcontroller, so can this information be accessible from scroll controller itself, instead of taking another parameter for that? 
+7. We have to make assumption that list's size never changes during the process. 
+8. Let's say user supplies top: 50 for intial and top: 10 for final, then it would be seemlessly easy, but if he supplies top: 50, bottom: 10, then we need to do some math, each sticky widget should have access to list's total height and width to do this math. Currently i am thinking since StickyContainer takes multiple children, if we wrap each StickyWidget with LayoutBuilder we should be able to get same constraints object in every StickyWidget which should represent the height / width of the list -> need to check this though.
+9. We should make sure StickyWidgets are drawn on top of List. 
+10. For simplicity, we should use only two co-ordinates in our internal Positioned, even if we get top: 50 for initial bottom: 10 for final, we should transform both of them to top or bottom and this should happen inside StickyWidget, as there can be multiple such widgets. 
+11. Once a widget sticks let's say at top, it should unstick and scrol down only when its real position arrives, not when immediately scrolled down, till then it should remain sticked. 
+12. Should we provide callbacks for animations? 
+13. if we don't use renderbox, we have to pass controller as parameter to each child.
+14. If we use render box, we have to somehow selectively rebuild (probably call markNeedsLayout) only on StickyWidget elements not others. Probably we can do this by checking their ParentDataType.
+15. COming to ParentDataType, we can store our initial and final x,y coordinates in parent data from child so that parent can read it and assign offsets while layouting, but for that child has to know constraints, which is only available at parent. Or we can use LayoutBuilder. 
+16. If we aren't passing controller to the child, we need to somehow pass it new scrolloffset while calling markNeedsLayout, or are we assigning it in our markNeedsLayout itself as offset. We can think of optimizing list for not to rebuild by making it const child, parentusesSize :false, ... 
+
+
+Went though the code of RenderStack which implements stack layout algorithm, there are lot of moving parts, so it's difficult, so let's try to stick with the without renderbox approach. 
+
+17. We can pass controller to only parent widget which has a stack and we can wrap stickywidgets in ValueNotifier, so that only they rebuild. 
+18. We can take all StickyChildren in separate parameter as list, so that it becomes easy to wrap them in ValueNotifier, and we can know which are StickyWidgets. 
+19. For getting the height through contraints, let's say the parent of StickyContainer is a Column which doesn't imposes any contraints on height, in this case we will be mislead if we use height. So we have to somehow force users to use a parent which imposes max constraint, or we can leave it for now as the problem exists for Expanded and ListView and all. 
+20. Alright, let's force user to pass same paramters in both initial and final position, eg: top & top, ... Because we need to consider size also if we want to allow different parameters 
+
+
+
+
+Other packages i currently want to work on
+
+* Snapping list
+* Template for custom refresh list. 
+* That growing and shrinking list from wonderous. 
