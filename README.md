@@ -1,15 +1,4 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
 
 <a href="https://github.com/SankethBK/flutter_sticky_widgets/actions"><img src="https://github.com/SankethBK/flutter_sticky_widgets/workflows/test-flutter-sticky-widgets/badge.svg" alt="Build Status"></a>
 
@@ -93,11 +82,12 @@ Note: `Make sure to pass same set of parameters for StickyPosition used in initi
 Eg: 
 
 Correct ✅
-initialPosition: StickyPosition(top: .., left: ..) 
+initialPosition: StickyPosition(top: .., left: ..)  
 finalPosition: StickyPosition(top: .., left: ..) 
 
 Wrong ❌ (should supply top instead of bottom for finalPosition also)
 
-initialPosition: StickyPosition(top: .., left: ..) 
+
+initialPosition: StickyPosition(top: .., left: ..)  
 finalPosition: StickyPosition(bottom: .., left: ..) 
 
