@@ -9,10 +9,9 @@ Sticky widgets is an UI pattern where we want widgets to scroll along with the U
 
 _(Green play button in first image, and shuffle play button in second image are examples for position: sticky)_
 
-<div style="display:flex; flex-wrap: wrap;">
-        <img style="width:300px; padding: 2rem" src="https://user-images.githubusercontent.com/51091231/199050896-614a10e2-b8df-4a3a-9399-9a7de15d191d.gif"> 
-        &nbsp; &nbsp; 
-        <img style="width:300px; padding: 2rem" src="https://user-images.githubusercontent.com/51091231/199096881-6f54e3ae-91a3-498e-a51d-4cf72c99151c.gif">
+<div>
+        <img src="https://user-images.githubusercontent.com/51091231/199099550-ae2a8cd2-cab6-42a7-9fcf-078522160e91.gif"> 
+        <img src="https://user-images.githubusercontent.com/51091231/199097900-e51e7db2-81e3-409f-a431-16d5baad0f0f.gif">
 </div>
 
 ## Getting started
