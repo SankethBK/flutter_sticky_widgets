@@ -11,29 +11,15 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+With flutter_sticky_widgets you can use a widget as if it is `position: sticky;` in CSS. 
 
-## Features
+Sticky widgets is an UI pattern where we want widgets to scroll along with the UI upto a certain point, and then stick to the screen instead of scrolling off the screen.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+<div style="display:flex; flex-wrap: wrap;">
+    <div style="width:400px;  mergin: 1rem;">
+        <img  src="https://user-images.githubusercontent.com/51091231/199035697-d4cbb226-5a15-45ac-afdd-55faf7bd1b78.gif">
+    </div>
+    <div style="width:400px;  mergin: 1rem;">
+        <img  src="https://user-images.githubusercontent.com/51091231/199035763-5f5ac3b8-19e6-46c2-84bd-eea1883dcda6.gif">
+    </div>
+</div>
