@@ -11,6 +11,9 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
+<a href="https://github.com/SankethBK/flutter_sticky_widgets/actions"><img src="https://github.com/SankethBK/flutter_sticky_widgets/workflows/test-flutter-sticky-widgets/badge.svg" alt="Build Status"></a>
+
+
 With *flutter_sticky_widgets* you can use a widget as if it is `position: sticky;` in CSS. 
 
 Sticky widgets is an UI pattern where we want widgets to scroll along with the UI upto a certain point, and then stick to the screen instead of scrolling off the screen.
