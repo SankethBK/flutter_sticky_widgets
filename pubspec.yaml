@@ -1,7 +1,7 @@
 name: flutter_sticky_widgets
-description: A new Flutter package project.
+description: Implement widgets which behave like position sticky in CSS.
 version: 0.0.1
-homepage:
+homepage: https://github.com/SankethBK/flutter_sticky_widgets
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
