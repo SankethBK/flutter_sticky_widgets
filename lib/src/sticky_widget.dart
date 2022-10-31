@@ -90,13 +90,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalTop <= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedTop!);
         });
       } else if (finalTop > widget._finalPosition.top! &&
           _computedTop! < widget._finalPosition.top!) {
         setState(() {
           _computedTop = widget._finalPosition.top!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedTop!);
         });
       }
     } else {
@@ -106,13 +106,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalTop >= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedTop!);
         });
       } else if (finalTop < widget._finalPosition.top! &&
           _computedTop! > widget._finalPosition.top!) {
         setState(() {
           _computedTop = widget._finalPosition.top!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedTop!);
         });
       }
     }
@@ -120,6 +120,7 @@ class _StickyWidgetState extends State<StickyWidget> {
 
   void updateBottom(double scrollOffset) {
     double finalBottom;
+
     if (widget._initialPosition.bottom! < widget._finalPosition.bottom!) {
       finalBottom = widget._initialPosition.bottom! + scrollOffset;
 
@@ -127,13 +128,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalBottom <= widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = finalBottom;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedBottom!);
         });
       } else if (finalBottom > widget._finalPosition.bottom! &&
           _computedBottom! < widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = widget._finalPosition.bottom!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedBottom!);
         });
       }
     } else {
@@ -143,13 +144,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalBottom >= widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = finalBottom;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedBottom!);
         });
       } else if (finalBottom < widget._finalPosition.bottom! &&
           _computedBottom! > widget._finalPosition.bottom!) {
         setState(() {
           _computedBottom = widget._finalPosition.bottom!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedBottom!);
         });
       }
     }
@@ -164,13 +165,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalLeft <= widget._finalPosition.left!) {
         setState(() {
           _computedLeft = finalLeft;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedLeft!);
         });
       } else if (finalLeft > widget._finalPosition.left! &&
           _computedLeft! < widget._finalPosition.left!) {
         setState(() {
           _computedLeft = widget._finalPosition.left!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedLeft!);
         });
       }
     } else {
@@ -180,13 +181,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalLeft >= widget._finalPosition.left!) {
         setState(() {
           _computedLeft = finalLeft;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedLeft!);
         });
       } else if (finalLeft < widget._finalPosition.left! &&
           _computedLeft! > widget._finalPosition.left!) {
         setState(() {
           _computedLeft = widget._finalPosition.left!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedLeft!);
         });
       }
     }
@@ -201,13 +202,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalRight <= widget._finalPosition.right!) {
         setState(() {
           _computedRight = finalRight;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedRight!);
         });
       } else if (finalRight > widget._finalPosition.right! &&
           _computedRight! < widget._finalPosition.right!) {
         setState(() {
           _computedRight = widget._finalPosition.right!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedRight!);
         });
       }
     } else {
@@ -217,13 +218,13 @@ class _StickyWidgetState extends State<StickyWidget> {
           finalRight >= widget._finalPosition.right!) {
         setState(() {
           _computedRight = finalRight;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedRight!);
         });
       } else if (finalRight < widget._finalPosition.right! &&
           _computedRight! > widget._finalPosition.right!) {
         setState(() {
           _computedRight = widget._finalPosition.right!;
-          if (widget.callback != null) widget.callback!(scrollOffset);
+          if (widget.callback != null) widget.callback!(_computedRight!);
         });
       }
     }

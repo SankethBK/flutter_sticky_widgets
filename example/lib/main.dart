@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sticky_widgets/flutter_sticky_buttons.dart';
+import 'package:flutter_sticky_widgets/flutter_sticky_widgets.dart';
 
 void main() {
   runApp(const MyApp());
