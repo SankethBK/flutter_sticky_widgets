@@ -16,17 +16,13 @@ class StickyWidget extends StatefulWidget {
       this.callback})
       : assert(
             !((initialPosition.top != null) ^ (finalPosition.top != null)) &&
-                !((initialPosition.bottom != null) ^
-                    (finalPosition.bottom != null)) &&
-                !((initialPosition.left != null) ^
-                    (finalPosition.left != null)) &&
-                !((initialPosition.left != null) ^
-                    (finalPosition.left != null)),
+                !((initialPosition.bottom != null) ^ (finalPosition.bottom != null)) &&
+                !((initialPosition.left != null) ^ (finalPosition.left != null)) &&
+                !((initialPosition.left != null) ^ (finalPosition.left != null)),
             "Provide same position paramters for initial and final Positions"),
         assert(
             (initialPosition.top != null) ^ (initialPosition.bottom != null) &&
-                (initialPosition.left != null) ^
-                    (initialPosition.right != null) &&
+                (initialPosition.left != null) ^ (initialPosition.right != null) &&
                 (finalPosition.top != null) ^ (finalPosition.bottom != null) &&
                 (finalPosition.left != null) ^ (finalPosition.right != null),
             "Don't provide both parameters of same axis (eg: top, bottom)"),
@@ -86,8 +82,7 @@ class _StickyWidgetState extends State<StickyWidget> {
     if (widget._initialPosition.top! < widget._finalPosition.top!) {
       finalTop = widget._initialPosition.top! + scrollOffset;
 
-      if (finalTop >= widget._initialPosition.top! &&
-          finalTop <= widget._finalPosition.top!) {
+      if (finalTop >= widget._initialPosition.top! && finalTop <= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
           if (widget.callback != null) widget.callback!(_computedTop!);
@@ -102,8 +97,7 @@ class _StickyWidgetState extends State<StickyWidget> {
     } else {
       finalTop = widget._initialPosition.top! - scrollOffset;
 
-      if (finalTop <= widget._initialPosition.top! &&
-          finalTop >= widget._finalPosition.top!) {
+      if (finalTop <= widget._initialPosition.top! && finalTop >= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
           if (widget.callback != null) widget.callback!(_computedTop!);
@@ -161,8 +155,7 @@ class _StickyWidgetState extends State<StickyWidget> {
     if (widget._initialPosition.left! < widget._finalPosition.left!) {
       finalLeft = widget._initialPosition.left! + scrollOffset;
 
-      if (finalLeft >= widget._initialPosition.left! &&
-          finalLeft <= widget._finalPosition.left!) {
+      if (finalLeft >= widget._initialPosition.left! && finalLeft <= widget._finalPosition.left!) {
         setState(() {
           _computedLeft = finalLeft;
           if (widget.callback != null) widget.callback!(_computedLeft!);
@@ -177,8 +170,7 @@ class _StickyWidgetState extends State<StickyWidget> {
     } else {
       finalLeft = widget._initialPosition.left! - scrollOffset;
 
-      if (finalLeft <= widget._initialPosition.left! &&
-          finalLeft >= widget._finalPosition.left!) {
+      if (finalLeft <= widget._initialPosition.left! && finalLeft >= widget._finalPosition.left!) {
         setState(() {
           _computedLeft = finalLeft;
           if (widget.callback != null) widget.callback!(_computedLeft!);

@@ -44,56 +44,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double buttonText = 0;
     return Scaffold(
-      appBar: AppBar(title: const Text("Sticky widgets example")),
       body: StickyContainer(
+        displayOverFlowContent: true,
         stickyChildren: [
-          StatefulBuilder(builder: (context, setState) {
-            return StickyWidget(
-              callback: (double scrollOffset) => setState(() {
-                buttonText = scrollOffset;
-              }),
-              initialPosition: StickyPosition(bottom: 100, right: 0),
-              finalPosition: StickyPosition(
-                  bottom: 100, right: MediaQuery.of(context).size.width - 30),
-              controller: _controller,
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: Center(child: Text("$buttonText")),
-              ),
-            );
-          }),
           StickyWidget(
-            initialPosition: StickyPosition(top: 0, left: 30),
-            finalPosition: StickyPosition(
-                top: 0, left: MediaQuery.of(context).size.width - 30),
+            initialPosition: StickyPosition(bottom: 20, right: 20),
+            finalPosition:
+                StickyPosition(bottom: MediaQuery.of(context).size.height - 80, right: 20),
             controller: _controller,
             child: Container(
               width: 40,
               height: 40,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Theme.of(context).primaryColor,
+                color: Colors.green,
               ),
-              child: const Icon(Icons.play_arrow, size: 20),
+              child: const Center(child: Icon(Icons.pause)),
             ),
-          )
+          ),
         ],
         child: ListView.builder(
-            scrollDirection: Axis.horizontal,
             controller: _controller,
-            itemCount: 30,
+            itemCount: 50,
             itemBuilder: ((context, index) {
-              return Container(
-                width: 100,
-                color: Colors.pinkAccent,
-                child: Center(child: Text("Tile $index")),
+              return ListTile(
+                title: Text("Tile $index"),
               );
             })),
       ),
