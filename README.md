@@ -19,5 +19,6 @@ _(Green play button in first image, and shuffle play button in second image are 
 
 <div style="display:flex; flex-wrap: wrap; background-color: red; border: 1px solid black; padding: 1rem;">
         <img style="width:300px; padding: 2rem" src="https://user-images.githubusercontent.com/51091231/199050896-614a10e2-b8df-4a3a-9399-9a7de15d191d.gif"> 
+        &nbsp; &nbsp; 
         <img style="width:300px; padding: 2rem" src="https://user-images.githubusercontent.com/51091231/199035763-5f5ac3b8-19e6-46c2-84bd-eea1883dcda6.gif">
 </div>
