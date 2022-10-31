@@ -81,11 +81,12 @@ Note: `Make sure to pass same set of parameters for StickyPosition used in initi
 
 Eg: 
 
-Correct ✅
+Correct ✅  
 initialPosition: StickyPosition(top: .., left: ..)  
 finalPosition: StickyPosition(top: .., left: ..) 
 
-Wrong ❌ (should supply top instead of bottom for finalPosition also)
+Wrong ❌  
+(should supply top instead of bottom for finalPosition also)
 
 
 initialPosition: StickyPosition(top: .., left: ..)  
