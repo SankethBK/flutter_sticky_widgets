@@ -15,11 +15,9 @@ With flutter_sticky_widgets you can use a widget as if it is `position: sticky;`
 
 Sticky widgets is an UI pattern where we want widgets to scroll along with the UI upto a certain point, and then stick to the screen instead of scrolling off the screen.
 
-<div style="display:flex; flex-wrap: wrap;">
-    <div style="width:400px;  mergin: 1rem;">
-        <img  src="https://user-images.githubusercontent.com/51091231/199035697-d4cbb226-5a15-45ac-afdd-55faf7bd1b78.gif">
-    </div>
-    <div style="width:400px;  mergin: 1rem;">
-        <img  src="https://user-images.githubusercontent.com/51091231/199035763-5f5ac3b8-19e6-46c2-84bd-eea1883dcda6.gif">
-    </div>
+_(Green play button in first image, and shuffle play button in second image are examples for position: sticky)_
+
+<div style="display:flex; flex-wrap: wrap; background-color: red; border: 1px solid black; padding: 1rem;">
+        <img style="width:300px; padding: 2rem" src="https://user-images.githubusercontent.com/51091231/199050896-614a10e2-b8df-4a3a-9399-9a7de15d191d.gif"> 
+        <img style="width:300px; padding: 2rem" src="https://user-images.githubusercontent.com/51091231/199035763-5f5ac3b8-19e6-46c2-84bd-eea1883dcda6.gif">
 </div>
