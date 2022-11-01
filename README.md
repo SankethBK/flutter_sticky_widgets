@@ -24,30 +24,30 @@ import 'package:flutter_sticky_widgets/flutter_sticky_widgets.dart';
 StickyContainer(
     stickyChildren: [
         StickyWidget(
-        initialPosition: StickyPosition(bottom: 20, right: 20),
-        finalPosition:
-            StickyPosition(bottom: MediaQuery.of(context).size.height - 80, right: 20),
-        controller: _controller,
-        child: Container(
+            initialPosition: StickyPosition(bottom: 20, right: 20),
+            finalPosition: StickyPosition(
+                bottom: MediaQuery.of(context).size.height - 80, right: 20),
+            controller: _controller,
+            child: Container(
             width: 40,
             height: 40,
             decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.green,
+                shape: BoxShape.circle,
+                color: Colors.green,
             ),
             child: const Center(child: Icon(Icons.pause)),
-        ),
+            ),
         ),
     ],
     child: ListView.builder(
-        controller: _controller,
-        itemCount: 50,
-        itemBuilder: ((context, index) {
-            return ListTile(
+    controller: _controller,
+    itemCount: 50,
+    itemBuilder: (context, index) {
+        return ListTile(
             title: Text("Tile $index"),
-            );
-        })),
-    );
+        );
+    }),
+);
 ```
 
 #### StickyWidget
@@ -68,7 +68,7 @@ It must be the parent element of the *Scrollable* widget used. StickyContainer's
 
 * __child (Widget):__ ideally *Scrollable* widget should be supplied for this parameter, if not you have to make sure StickyContainer's size is same as *Scrollable's* size.
 
-* __stickyChildren (List<StickyWidget>):__ you can supply one or more *StickyWidgets*.
+* __stickyChildren (List\<StickyWidget>):__ you can supply one or more *StickyWidgets*.
 
 * __displayOverFlowContent (bool) (optional):__ true if you want to display the StickyWidgets overflowing outside of the StickyContainer's bounds. 
  

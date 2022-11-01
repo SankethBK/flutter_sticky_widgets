@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'sticky_position.dart';
 
 class StickyWidget extends StatefulWidget {
+  /// indicates the position of the widget before the scrolling has started.
   final StickyPosition _initialPosition;
+
+  /// indicates the position of the widget where it will remain sticky after sufficient amount of scrolling.
   final StickyPosition _finalPosition;
+
+  /// used by StickyWidget to detect scrolling. Same ScrollController must be attached to your Scrollable.
   final ScrollController _controller;
+
+  /// An optional callback function, which gets called on every scroll. It receives scrolloffset as parameter which can be used to animate the StickyWidget.
   final Function(double)? callback;
   final Widget child;
   StickyWidget(
@@ -16,13 +23,17 @@ class StickyWidget extends StatefulWidget {
       this.callback})
       : assert(
             !((initialPosition.top != null) ^ (finalPosition.top != null)) &&
-                !((initialPosition.bottom != null) ^ (finalPosition.bottom != null)) &&
-                !((initialPosition.left != null) ^ (finalPosition.left != null)) &&
-                !((initialPosition.left != null) ^ (finalPosition.left != null)),
+                !((initialPosition.bottom != null) ^
+                    (finalPosition.bottom != null)) &&
+                !((initialPosition.left != null) ^
+                    (finalPosition.left != null)) &&
+                !((initialPosition.left != null) ^
+                    (finalPosition.left != null)),
             "Provide same position paramters for initial and final Positions"),
         assert(
             (initialPosition.top != null) ^ (initialPosition.bottom != null) &&
-                (initialPosition.left != null) ^ (initialPosition.right != null) &&
+                (initialPosition.left != null) ^
+                    (initialPosition.right != null) &&
                 (finalPosition.top != null) ^ (finalPosition.bottom != null) &&
                 (finalPosition.left != null) ^ (finalPosition.right != null),
             "Don't provide both parameters of same axis (eg: top, bottom)"),
@@ -82,7 +93,8 @@ class _StickyWidgetState extends State<StickyWidget> {
     if (widget._initialPosition.top! < widget._finalPosition.top!) {
       finalTop = widget._initialPosition.top! + scrollOffset;
 
-      if (finalTop >= widget._initialPosition.top! && finalTop <= widget._finalPosition.top!) {
+      if (finalTop >= widget._initialPosition.top! &&
+          finalTop <= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
           if (widget.callback != null) widget.callback!(_computedTop!);
@@ -97,7 +109,8 @@ class _StickyWidgetState extends State<StickyWidget> {
     } else {
       finalTop = widget._initialPosition.top! - scrollOffset;
 
-      if (finalTop <= widget._initialPosition.top! && finalTop >= widget._finalPosition.top!) {
+      if (finalTop <= widget._initialPosition.top! &&
+          finalTop >= widget._finalPosition.top!) {
         setState(() {
           _computedTop = finalTop;
           if (widget.callback != null) widget.callback!(_computedTop!);
@@ -155,7 +168,8 @@ class _StickyWidgetState extends State<StickyWidget> {
     if (widget._initialPosition.left! < widget._finalPosition.left!) {
       finalLeft = widget._initialPosition.left! + scrollOffset;
 
-      if (finalLeft >= widget._initialPosition.left! && finalLeft <= widget._finalPosition.left!) {
+      if (finalLeft >= widget._initialPosition.left! &&
+          finalLeft <= widget._finalPosition.left!) {
         setState(() {
           _computedLeft = finalLeft;
           if (widget.callback != null) widget.callback!(_computedLeft!);
@@ -170,7 +184,8 @@ class _StickyWidgetState extends State<StickyWidget> {
     } else {
       finalLeft = widget._initialPosition.left! - scrollOffset;
 
-      if (finalLeft <= widget._initialPosition.left! && finalLeft >= widget._finalPosition.left!) {
+      if (finalLeft <= widget._initialPosition.left! &&
+          finalLeft >= widget._finalPosition.left!) {
         setState(() {
           _computedLeft = finalLeft;
           if (widget.callback != null) widget.callback!(_computedLeft!);

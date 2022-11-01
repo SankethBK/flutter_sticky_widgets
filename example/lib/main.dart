@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
         stickyChildren: [
           StickyWidget(
             initialPosition: StickyPosition(bottom: 20, right: 20),
-            finalPosition:
-                StickyPosition(bottom: MediaQuery.of(context).size.height - 80, right: 20),
+            finalPosition: StickyPosition(
+                bottom: MediaQuery.of(context).size.height - 80, right: 20),
             controller: _controller,
             child: Container(
               width: 40,
